@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from taxi.models import Driver, Car
+from taxi.models import Car
 
 
 class DriverLicenseUpdateForm(forms.ModelForm):
@@ -47,7 +47,7 @@ class DriverCreationForm(UserCreationForm):
 
 class CarForm(forms.ModelForm):
     drivers = forms.ModelMultipleChoiceField(
-        queryset=Driver.objects.all(),
+        queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple
     )
 
